@@ -30,12 +30,12 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm() !== true) return;
-    const ok = await signup(formData);                   
+    const ok = await signup(formData);
     if (ok) navigate("/login");                          // <-- redirect after signup
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
+    <div className="min-h-screen grid lg:grid-cols-2 bg-[oklch(88%_0.04_70)] text-[oklch(28%_0.04_70)]">
       {/* left side */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -43,10 +43,13 @@ const SignUpPage = () => {
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
               <div
-                className="size-12 rounded-xl bg-primary/10 flex items-center justify-center 
-              group-hover:bg-primary/20 transition-colors"
+                className="size-12 rounded-xl 
+             bg-[oklch(80%_0.05_65)] 
+             group-hover:bg-[oklch(76%_0.05_65)] 
+             flex items-center justify-center 
+             transition-colors"
               >
-                <Book className="size-6 text-primary" />
+                <Book className="size-6 text-[oklch(50%_0.12_55)] stroke-[1.75]" />
               </div>
               <h1 className="text-2xl font-bold mt-2">Create Account</h1>
               <p className="text-base-content/60">Get started with your free account</p>
@@ -59,8 +62,10 @@ const SignUpPage = () => {
                 <span className="label-text font-medium">Full Name</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="size-5 text-base-content/40" />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center
+                  pointer-events-none z-10
+                  text-[oklch(35%_0.06_60)]/60">
+                  <User className="size-5 !text-[oklch(35%_0.06_60)]/70 [stroke:oklch(35%_0.06_60)]"  />
                 </div>
                 <input
                   type="text"
@@ -77,8 +82,10 @@ const SignUpPage = () => {
                 <span className="label-text font-medium">Email</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="size-5 text-base-content/40" />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center
+                  pointer-events-none z-10
+                  text-[oklch(35%_0.06_60)]/60">
+                  <Mail className="size-5 !text-[oklch(35%_0.06_60)]/70 [stroke:oklch(35%_0.06_60)]" />
                 </div>
                 <input
                   type="email"
@@ -95,31 +102,44 @@ const SignUpPage = () => {
                 <span className="label-text font-medium">Password</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="size-5 text-base-content/40" />
+                {/* LEFT ICON (Lock) */}
+                <div
+                  className="absolute inset-y-0 left-0 pl-3 flex items-center
+               pointer-events-none z-20
+               text-[oklch(35%_0.06_60)]/60"
+                >
+                  <Lock className="size-5 !text-[oklch(35%_0.06_60)]/70 [stroke:oklch(35%_0.06_60)]" />
                 </div>
+
+                {/* INPUT */}
                 <input
                   type={showPassword ? "text" : "password"}
-                  className={`input input-bordered w-full pl-10`}
+                  className="input input-bordered w-full pl-10 pr-10"
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
+
+                {/* RIGHT EYE BUTTON */}
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center z-20"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeOff className="size-5 text-base-content/40" />
+                    <EyeOff className="size-5 !text-[oklch(35%_0.06_60)]/70 [stroke:oklch(35%_0.06_60)]" />
                   ) : (
-                    <Eye className="size-5 text-base-content/40" />
+                    <Eye className="size-5 !text-[oklch(35%_0.06_60)]/70 [stroke:oklch(35%_0.06_60)]" />
                   )}
                 </button>
               </div>
+
             </div>
 
-            <button type="submit" className="btn btn-primary w-full" disabled={isSigningUp}>
+            <button type="submit" className="btn w-full 
+             bg-[oklch(64%_0.08_65)] hover:bg-[oklch(58%_0.08_65)] 
+             border-[oklch(64%_0.08_65)] hover:border-[oklch(58%_0.08_65)] 
+             text-white" disabled={isSigningUp}>
               {isSigningUp ? (
                 <>
                   <Loader2 className="size-5 animate-spin" />
@@ -144,8 +164,8 @@ const SignUpPage = () => {
 
       {/* right side */}
       <AuthImagePattern
-      title ="Join our community"
-      subtitle="Connect with friends, new people and share your moment"
+        title="Join our community"
+        subtitle="Connect with friends, new people and share your moment"
       />
     </div>
   );
